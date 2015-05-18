@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518083049) do
+ActiveRecord::Schema.define(version: 20150518094730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "corners", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "logo_uid"
+    t.string   "slug",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+  end
+
+  add_index "corners", ["slug"], name: "index_corners_on_slug", unique: true, using: :btree
+
+  create_table "corners_users", id: false, force: :cascade do |t|
+    t.integer "corner_id"
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",         null: false

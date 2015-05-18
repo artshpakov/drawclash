@@ -7,6 +7,8 @@ gem 'pg'
 gem 'pry-rails'
 gem 'slim-rails'
 gem 'sorcery'
+gem 'babosa'
+gem 'dragonfly'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'

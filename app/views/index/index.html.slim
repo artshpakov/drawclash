@@ -1,1 +1,10 @@
-= render partial: 'partials/header'
+- if current_user
+  - if current_user.corners.present?
+    h2 Your corners
+    = render partial: 'partials/corners', locals: {corners: current_user.corners}
+  p = link_to 'Create a corner', new_corner_path
+    
+h2
+  ' Browse corners
+  small.note (#{Corner.count} total)
+= render partial: 'partials/corners', locals: {corners: @corners}

@@ -7,20 +7,37 @@ body
   font-family: Lucida Grande
 
 #wrapper
-  padding: 30px
+  padding: 30px 50px
 
 h1, h2, h3, h4
   font-weight: normal
+
+a
+  color: crimson
+  &:hover
+    color: rgb(158, 28, 53)
+
+ul
+  list-style: none
+  padding: 0
 
 #signup-form, #signin-form
   padding: 8px 12px
   float: left
 
-input
+#corner_form
+  width: 300px
+  input
+    width: 300px
+    &[type=submit]
+      width: auto
+
+input, textarea
   display: block
   padding: 6px 10px
   margin-bottom: 3px
   outline: none
+  border: 2px solid #ccc
   border-radius: 3px
   border-style: groove
   width: 200px
@@ -32,6 +49,37 @@ input
     width: auto
     &:hover
       background-color: #bbb
+textarea
+  width: 300px
 
 .clear
   clear: both
+
+.note
+  color: #808080
+
+
+.corner
+  overflow: hidden
+  margin-bottom: 14px
+  .logo-thumb
+    border-radius: 30px
+    overflow: hidden
+    border: 1px solid #666
+    float: left
+    margin-right: 14px
+    height: 60px
+    width: 60px
+
+#corner-head
+  #corner-logo
+    width: 200px
+    height: 300px
+    background-size: cover
+    background-position: center
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3) inset
+    border: 1px solid #666
+    float: left
+
+  #corner-basic
+    margin-left: 240px
