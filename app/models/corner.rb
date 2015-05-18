@@ -4,7 +4,8 @@ class Corner < ActiveRecord::Base
 
   dragonfly_accessor :logo
 
-  validates :slug, uniqueness: true
+  validates :name, presence: true
+  validates :slug, presence: true, uniqueness: true
 
   before_validation :generate_slug
 

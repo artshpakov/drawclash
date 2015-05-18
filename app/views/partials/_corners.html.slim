@@ -1,5 +1,6 @@
 ul
   - corners.each do |corner|
     li.corner
-      = link_to image_tag(corner.logo.thumb('60x60#').url), corner_path(corner), class: 'logo-thumb'
+      - if corner.logo.present?
+        = link_to image_tag(corner.logo.thumb('60x60#').url), corner_path(corner), class: 'logo-thumb'
       b = link_to corner.name, corner_path(corner)

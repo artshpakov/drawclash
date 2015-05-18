@@ -6,8 +6,12 @@ class CornersController < ApplicationController
 
   def create
     @corner = current_user.corners.create corner_params
-    Rails.logger.debug @corner.errors.messages unless @corner.persisted?
-    redirect_to root_path
+    if @corner.persisted?
+      redirect_to corner_path(@corner)
+    else
+      Rails.logger.debug @corner.errors.messages unless @corner.persisted?
+      redirect_to root_path
+    end
   end
 
 
