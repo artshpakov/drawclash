@@ -9,8 +9,6 @@ body
   padding: 0
   margin: 0
 
-#wrapper, header
-  padding: 16px 50px
 
 h1, h2, h3, h4
   font-weight: normal
@@ -35,6 +33,11 @@ header
   #auth
     float: right
     line-height: 50px
+
+header, #wrapper > *
+  padding: 16px 50px
+  &.wide
+    padding: 0
 
 #logo
   font-size: 50px
@@ -124,25 +127,25 @@ textarea
       border: 1px solid crimson
       box-shadow: 0 0 6px crimson
 
+
+#entries
+  border-top: 1px solid #bbb
+
 .entry-card
-  width: 280px
-  border: 1px solid #bbb
-  border-radius: 6px
+  width: 100%
   background-size: cover
   overflow: hidden
   position: relative
-  margin-bottom: 10px
-  margin-right: 28px
-  float: left
   img
+    width: 100%
     display: block
-    transition: all 0.5s ease
+    transition: all 0.4s ease
     &:hover
       transform: scale(1.1)
   .details
     color: #fff
     padding: 20px
-    background-color: rgba(0,0,0,0.6)
+    background-color: rgba(0,0,0,0.7)
     position: absolute
     bottom: 0
     width: 100%

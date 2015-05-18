@@ -7,7 +7,7 @@ p #{ @battle.entries_count } entries
     = form.file_field :image
     = form.submit "Upload"
 
-#entries
+#entries.wide data-elaborate-grid="4"
   - @battle.entries.limit(30).each do |entry|
     .entry-card
       = image_tag entry.image.thumb('280x').url
