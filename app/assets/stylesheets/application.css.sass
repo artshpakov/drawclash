@@ -2,3 +2,36 @@
  *= require_tree .
  *= require_self
  */
+
+body
+  font-family: Lucida Grande
+
+#wrapper
+  padding: 30px
+
+h1, h2, h3, h4
+  font-weight: normal
+
+#signup-form, #signin-form
+  padding: 8px 12px
+  float: left
+
+input
+  display: block
+  padding: 6px 10px
+  margin-bottom: 3px
+  outline: none
+  border-radius: 3px
+  border-style: groove
+  width: 200px
+  &:focus
+    border: 2px solid crimson
+  &[type=submit]
+    cursor: pointer
+    margin: auto
+    width: auto
+    &:hover
+      background-color: #bbb
+
+.clear
+  clear: both
