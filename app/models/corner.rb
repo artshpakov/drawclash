@@ -1,6 +1,7 @@
 class Corner < ActiveRecord::Base
 
   has_and_belongs_to_many :users
+  has_many :battles
 
   dragonfly_accessor :logo
 
@@ -8,6 +9,8 @@ class Corner < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: true
 
   before_validation :generate_slug
+
+  scope :populated, -> { where('battles_count > 0') }
 
 
   def to_param

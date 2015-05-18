@@ -1,7 +1,7 @@
 class CornersController < ApplicationController
 
   def show
-    @corner = Corner.find_by! slug: params[:id]
+    @corner = Corner.find_by!(slug: params[:id])
   end
 
   def create
@@ -9,7 +9,7 @@ class CornersController < ApplicationController
     if @corner.persisted?
       redirect_to corner_path(@corner)
     else
-      Rails.logger.debug @corner.errors.messages unless @corner.persisted?
+      Rails.logger.debug @corner.errors.messages
       redirect_to root_path
     end
   end

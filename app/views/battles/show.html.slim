@@ -1,0 +1,17 @@
+h1 = @battle.name
+p #{ distance_of_time_in_words(@battle.open_until, Time.now) } to go
+p #{ @battle.entries_count } entries
+
+- if current_user
+  = form_for Entry.new, url: corner_battle_entries_path(@battle.corner, @battle) do |form|
+    = form.file_field :image
+    = form.submit "Upload"
+
+#entries
+  - @battle.entries.limit(30).each do |entry|
+    .entry-card
+      = image_tag entry.image.thumb('280x').url
+      .details
+        = entry.user.username
+        br
+        | #{ entry.likes.count } likes

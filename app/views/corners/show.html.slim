@@ -5,3 +5,13 @@
     h1 = @corner.name
     hr
     p = simple_format @corner.description
+
+#corner-body
+  h2 Battles!
+  - if current_user && current_user.in?(@corner.users)
+    p = link_to "Start a battle", new_corner_battle_path(@corner)
+  - @corner.battles.each do |battle|
+    a.battle href=corner_battle_path(@corner, battle) style="background-image:url(#{ battle.last_entry.image.url rescue nil })"
+      div = battle.name
+      small style="float: right" #{ distance_of_time_in_words(battle.open_until, Time.now) } left
+      small #{ battle.entries_count } entries

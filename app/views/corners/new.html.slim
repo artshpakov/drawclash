@@ -1,6 +1,6 @@
 = form_for Corner.new, html: {id: 'corner_form', html: {multipart: true}} do |form|
   h2 Create a new corner
-  = form.text_field :name, placeholder: 'Name'
+  = form.text_field :name, placeholder: 'Name', autocomplete: 'off'
   = form.text_area :description, rows: 8
   = form.file_field :logo
   = form.submit 'Create'

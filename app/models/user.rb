@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
 
+  has_many :entries
   has_and_belongs_to_many :corners
 
   validates :username, uniqueness: true

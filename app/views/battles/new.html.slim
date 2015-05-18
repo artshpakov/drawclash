@@ -1,0 +1,4 @@
+= form_for Battle.new, url: corner_battles_path(corner_id: params[:corner_id]), html: {id: 'battle_form'} do |form|
+  h2 Start a new battle
+  = form.text_field :name, placeholder: 'Name', autocomplete: 'off'
+  = form.submit 'Create'

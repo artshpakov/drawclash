@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      redirect_to root_path
+      login(@user.username, @user.password)
     else
       Rails.logger.debug @user.errors.messages
-      redirect_to root_path
     end
+    redirect_to :back
   end
 
 

@@ -6,5 +6,5 @@
     
 h2
   ' Browse corners
-  small.note (#{Corner.count} total)
+  small.note (#{Corner.populated.count} total)
 = render partial: 'partials/corners', locals: {corners: @corners}
