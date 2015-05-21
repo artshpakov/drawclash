@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518155357) do
+ActiveRecord::Schema.define(version: 20150521103705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20150518155357) do
     t.integer  "battle_id"
     t.integer  "user_id"
     t.string   "image_uid",               null: false
-    t.string   "likes",      default: [],              array: true
     t.datetime "created_at",              null: false
+    t.integer  "likes",      default: [],              array: true
   end
 
   add_index "entries", ["battle_id"], name: "index_entries_on_battle_id", using: :btree

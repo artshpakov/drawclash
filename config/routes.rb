@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'likes/create'
+
+  get 'likes/destroy'
+
   root to: 'index#index'
 
   resources :users, only: :create
@@ -9,6 +13,10 @@ Rails.application.routes.draw do
     resources :battles, only: %i(show new create) do
       resources :entries, only: :create
     end
+  end
+  
+  resources :likes, only: :create do
+    collection { delete '/' => :destroy }
   end
 
 end

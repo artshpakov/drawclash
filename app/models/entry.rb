@@ -5,4 +5,6 @@ class Entry < ActiveRecord::Base
 
   dragonfly_accessor :image
 
+  default_scope -> { order :created_at }
+
 end

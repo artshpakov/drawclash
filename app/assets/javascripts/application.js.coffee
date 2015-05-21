@@ -4,6 +4,19 @@
 
 
 $ ->
+  window.DrawClash = window.DrawClash || {}
+
+  DrawClash.like = (entry_id) ->
+    $.post '/likes', { entry_id }, (reply) -> window.location.reload()
+
+  DrawClash.dislike = (entry_id) ->
+    $.ajax '/likes',
+      type: 'DELETE'
+      data: { entry_id },
+      success: (reply) -> window.location.reload()
+
+
+
   buildGrid = ($container) ->
     $cards      = $container.children()
     columnCount = $container.data('elaborate-grid')
