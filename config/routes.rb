@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :corners, only: %i(show new create) do
     resources :battles, only: %i(show new create) do
-      resources :entries, only: :create
+      resources :entries, only: %i(create destroy)
     end
   end
   

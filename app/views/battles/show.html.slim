@@ -25,3 +25,5 @@ p #{ @battle.entries_count } entries
             => fa_icon :'heart-o'
             | #{ entry.likes.count }
         = entry.user.username
+      - if can? :delete, entry
+        = link_to '&times;'.html_safe, corner_battle_entry_path(@battle.corner_id, @battle.id, entry.id), class: "remove", title: "Remove entry", onclick:"return confirm('Remove your entry?')", method: :delete
