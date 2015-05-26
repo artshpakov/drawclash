@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521103705) do
+ActiveRecord::Schema.define(version: 20150526104311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,9 +49,11 @@ ActiveRecord::Schema.define(version: 20150521103705) do
     t.string   "image_uid",               null: false
     t.datetime "created_at",              null: false
     t.integer  "likes",      default: [],              array: true
+    t.integer  "corner_id",               null: false
   end
 
   add_index "entries", ["battle_id"], name: "index_entries_on_battle_id", using: :btree
+  add_index "entries", ["corner_id"], name: "index_entries_on_corner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",         null: false
