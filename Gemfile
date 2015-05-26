@@ -10,6 +10,7 @@ gem 'slim-rails'
 gem 'sorcery'
 gem 'babosa'
 gem 'dragonfly'
+gem 'cancan'
 
 gem 'font-awesome-rails'
 gem 'sass-rails', '~> 4.0.3'

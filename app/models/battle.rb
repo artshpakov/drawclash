@@ -6,6 +6,7 @@ class Battle < ActiveRecord::Base
   validates :name, presence: true
 
   scope :open, -> { where("open_until > ?", Time.now) }
+  scope :ordered, -> { order("(open_until > '#{ Time.now }') DESC").order(created_at: :desc) }
 
 
   def open?
