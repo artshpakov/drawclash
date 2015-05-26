@@ -2,6 +2,7 @@ class Corner < ActiveRecord::Base
 
   has_and_belongs_to_many :users
   has_many :battles
+  has_many :posts
 
   dragonfly_accessor :logo
 

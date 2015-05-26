@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'posts/create'
+
   root to: 'index#index'
 
   resources :users, only: :create
@@ -9,6 +11,9 @@ Rails.application.routes.draw do
     resources :battles, only: %i(show new create) do
       resources :entries, only: %i(create destroy)
     end
+
+    resources :posts, only: :create
+
     post 'follow' => 'followings#create', entity_type: 'Corner'
     delete 'unfollow' => 'followings#destroy', entity_type: 'Corner'
   end

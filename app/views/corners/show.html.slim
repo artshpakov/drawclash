@@ -2,14 +2,16 @@
   #corner-face
     - if @corner.logo.present?
       #corner-logo style="background-image: url(#{@corner.logo.url})"
-    - if current_user.follows? @corner
-      = link_to corner_unfollow_path(corner_id: @corner.id), class: 'follow', method: :delete do
-        => fa_icon 'star'
-        small unfollow
-    - else
-      = link_to corner_follow_path(corner_id: @corner.id), class: 'follow', method: :post do
-        => fa_icon 'star-o'
-        small follow
+
+    - if current_user
+      - if current_user.follows? @corner
+        = link_to corner_unfollow_path(corner_id: @corner.id), class: 'follow', method: :delete do
+          => fa_icon 'star'
+          small unfollow
+      - else
+        = link_to corner_follow_path(corner_id: @corner.id), class: 'follow', method: :post do
+          => fa_icon 'star-o'
+          small follow
 
   #corner-basic
     h1 = @corner.name
@@ -17,15 +19,26 @@
     p = simple_format @corner.description
 
 #corner-body
-  h2 Battles!
-  - if current_user && current_user.in?(@corner.users)
-    p = link_to "Start a battle", new_corner_battle_path(@corner)
-  - @corner.battles.ordered.each do |battle|
-    a.battle href=corner_battle_path(@corner, battle) style="background-image:url(#{ battle.last_entry.image.url rescue nil })"
-      div = battle.name
-      small style="float: right"
-        - if battle.open?
-          | #{ distance_of_time_in_words(battle.open_until, Time.now) } left
-        - else
-          | Concluded
-      small #{ battle.entries_count } entries
+  .grid-left-column
+    - if current_user && current_user.in?(@corner.users)
+      p = link_to "Start a battle", new_corner_battle_path(@corner)
+
+    - @corner.battles.ordered.each do |battle|
+      a.battle href=corner_battle_path(@corner, battle) style="background-image:url(#{ battle.last_entry.image.url rescue nil })"
+        div = battle.name
+        small style="float: right"
+          - if battle.open?
+            | #{ distance_of_time_in_words(battle.open_until, Time.now) } left
+          - else
+            | Concluded
+        small #{ battle.entries_count } entries
+
+  .grid-right-column
+    h2 Dashboard
+
+    - if can?(:post_to, @corner)
+      = form_for [@corner, Post.new] do |f|
+        = f.text_area :body, rows: 8, placeholder: 'Post some news'
+        = f.submit 'Create a post'
+
+    = render partial: 'partials/timeline', locals: {timeline: @posts}

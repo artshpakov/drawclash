@@ -1,10 +1,18 @@
-- if current_user
-  - if current_user.corners.present?
-    h2 Your corners
-    = render partial: 'partials/corners', locals: {corners: current_user.corners}
-  p = link_to 'Create a corner', new_corner_path
-    
-h2
-  ' Browse corners
-  small.note (#{Corner.populated.count} total)
-= render partial: 'partials/corners', locals: {corners: @corners}
+.grid-left-column
+  - if current_user
+    h2
+      ' Your corners
+      small = link_to 'Create one', new_corner_path
+    - if current_user.corners.present?
+      = render partial: 'partials/corners', locals: {corners: current_user.corners}
+    h2 Corners you follow
+    = render partial: 'partials/corners', locals: {corners: @followed_corners}
+  h2
+    ' Browse corners
+    small.note (#{Corner.populated.count} total)
+  = render partial: 'partials/corners', locals: {corners: @corners}
+
+.grid-right-column
+  - if current_user
+    h2 Dashboard
+    = render partial: 'partials/timeline', locals: {timeline: @timeline}

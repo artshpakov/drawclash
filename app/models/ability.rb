@@ -6,6 +6,7 @@ class Ability
     user ||= User.new
 
     if user.persisted?
+      # entries
       can :post_entry, Battle do |battle|
         battle.open?
       end
@@ -13,6 +14,11 @@ class Ability
 
       can :delete, Entry do |entry|
         entry.corner_id.in? user.corners.pluck(:id)
+      end
+
+      # posts
+      can :post_to, Corner do |corner|
+        corner.in? user.corners
       end
     end
 

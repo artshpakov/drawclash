@@ -2,6 +2,7 @@ class CornersController < ApplicationController
 
   def show
     @corner = Corner.find_by!(slug: params[:id])
+    @posts = @corner.posts.limit(10)
   end
 
   def create

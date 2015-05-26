@@ -1,0 +1,15 @@
+- timeline.each do |post|
+  - corner = post.corner
+  .post
+    .logo
+      - if post.corner.logo.present?
+        = link_to image_tag(corner.logo.thumb('50x50#').url), corner_path(corner), class: 'logo-thumb'
+    .body
+      p
+        small style="float:right" #{ time_ago_in_words post.created_at } ago
+        b = link_to corner.name.upcase, corner_path(corner)
+
+      p = post.body
+      p style="float:right; font-size: 12px"
+        => fa_icon :'heart-o'
+        = post.likes.count
