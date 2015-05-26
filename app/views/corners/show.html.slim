@@ -1,6 +1,16 @@
 #corner-head
-  - if @corner.logo.present?
-    #corner-logo style="background-image: url(#{@corner.logo.url})"
+  #corner-face
+    - if @corner.logo.present?
+      #corner-logo style="background-image: url(#{@corner.logo.url})"
+    - if current_user.follows? @corner
+      = link_to corner_unfollow_path(corner_id: @corner.id), class: 'follow', method: :delete do
+        => fa_icon 'star'
+        small unfollow
+    - else
+      = link_to corner_follow_path(corner_id: @corner.id), class: 'follow', method: :post do
+        => fa_icon 'star-o'
+        small follow
+
   #corner-basic
     h1 = @corner.name
     hr

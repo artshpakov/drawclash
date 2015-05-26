@@ -7,6 +7,7 @@ class CornersController < ApplicationController
   def create
     @corner = current_user.corners.create corner_params
     if @corner.persisted?
+      Following.create user_id: current_user.id, entity_id: @corner.id, entity_type: Corner
       redirect_to corner_path(@corner)
     else
       Rails.logger.debug @corner.errors.messages
