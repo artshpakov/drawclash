@@ -1,0 +1,33 @@
+---
+- name: ruby | clone rbenv
+  git: repo=git://github.com/sstephenson/rbenv.git dest={{ rbenv_root }} accept_hostkey=yes
+
+- name: ruby | add rbenv to path
+  file: path=/usr/local/bin/rbenv src={{ rbenv_root }}/bin/rbenv state=link
+  sudo: yes
+
+- name: ruby | initialize rbenv
+  template: src=rbenv.sh.j2 dest=/etc/profile.d/rbenv.sh owner=root group=root mode=0755
+  sudo: yes
+
+- name: ruby | clone ruby-build
+  git: repo=git://github.com/sstephenson/ruby-build.git dest={{ rbenv_root }}/plugins/ruby-build accept_hostkey=yes
+
+- name: ruby | check installed version
+  shell: rbenv versions | grep {{ ruby_version }}
+  register: check_ruby
+  ignore_errors: yes
+
+- name: ruby | install
+  shell: rbenv install {{ ruby_version }}
+  when: check_ruby|failed
+
+- name: ruby | set global version
+  shell: rbenv global {{ ruby_version }}
+
+- name: ruby | rehash rbenv
+  shell: rbenv rehash
+
+- name: ruby | install bundler
+  sudo: yes
+  gem: name=bundler

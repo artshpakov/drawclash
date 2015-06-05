@@ -1,0 +1,10 @@
+---
+- name: codebase | bundle install
+  args:
+    chdir: /vagrant
+  shell: rbenv exec bundle install
+
+- name: codebase | prepare db
+  args:
+    chdir: /vagrant
+  shell: rbenv exec bundle exec rake db:create db:migrate

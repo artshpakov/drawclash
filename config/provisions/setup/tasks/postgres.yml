@@ -1,0 +1,31 @@
+---
+- name: db | install PostgreSQL packages
+  sudo: yes
+  apt: "name={{ item }} state=present update_cache=yes"
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - libpq-dev
+
+- name: db | add postgres to sudoers
+  sudo: yes
+  lineinfile:
+    dest: /etc/sudoers
+    line: "vagrant ALL=(postgres) NOPASSWD: ALL"
+    validate: 'visudo -cf %s'
+
+- name: db | create user
+  postgresql_user: "name=clasher password=cxvbfyfe8vg role_attr_flags=CREATEDB,SUPERUSER"
+  sudo_user: postgres
+
+- name: db | user access
+  sudo: yes
+  copy:
+    dest: /etc/postgresql/9.3/main/pg_hba.conf
+    content: |
+      local   all   postgres       peer
+      local   all   clasher        md5
+
+- name: restart postgresql
+  sudo: yes
+  service: name=postgresql state=restarted

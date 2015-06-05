@@ -1,0 +1,15 @@
+---
+- name: install packages
+  sudo: yes
+  apt: "name={{ item }} state=present update_cache=yes"
+  with_items:
+    - build-essential
+    - git-core
+    - rubygems-integration
+    - python-pycurl
+    - python-psycopg2
+    - nodejs
+
+- include: ruby.yml
+- include: postgres.yml
+- include: codebase.yml
