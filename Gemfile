@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
+# source 'https://rails-assets.org'
 
 gem 'rails', '4.2.1'
 
@@ -7,10 +7,10 @@ gem 'thin'
 gem 'pg'
 gem 'pry-rails'
 gem 'slim-rails'
-gem 'sorcery'
 gem 'babosa'
 gem 'dragonfly'
 gem 'cancan'
+gem 'omniauth-vkontakte'
 
 gem 'font-awesome-rails'
 gem 'sass-rails', '~> 4.0.3'
