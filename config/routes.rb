@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'posts/create'
-
   root to: 'index#index'
 
-  resources :users, only: :create
-  resources :sessions, only: %i(create destroy)
+  namespace :auth do
+    get ':provider/callback' => :signon
+    delete :signout
+  end
 
   resources :corners, only: %i(show new create) do
     resources :battles, only: %i(show new create) do

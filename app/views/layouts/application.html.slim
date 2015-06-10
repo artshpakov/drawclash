@@ -9,20 +9,4 @@ html
   body lang="ru"
     = render partial: 'partials/header'
     #wrapper
-      - unless current_user
-        = form_for User.new, html: { id: 'signup-form' } do |form|
-          h2 Sign up
-          = form.text_field :username, placeholder: "Username"
-          = form.text_field :email, placeholder: "E-mail"
-          = form.password_field :password, placeholder: "Password"
-          = form.password_field :password_confirmation, placeholder: "Confirmation"
-          = form.submit 'Sign up'
-        = form_tag sessions_path, id: 'signin-form'
-          h2 Sign in
-          = text_field_tag :username, nil, placeholder: "Username or E-mail"
-          = password_field_tag :password, nil, placeholder: "Password"
-          = submit_tag 'Sign in'
-        .clear
-        hr
-
       == yield

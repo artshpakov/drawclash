@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526124037) do
+ActiveRecord::Schema.define(version: 20150610125034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20150526124037) do
     t.string  "entity_type", null: false
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider",                null: false
+    t.string   "uid",                     null: false
+    t.json     "raw_data",   default: {}
+    t.datetime "created_at",              null: false
+  end
+
+  add_index "identities", ["provider", "uid"], name: "index_identities_on_provider_and_uid", unique: true, using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.text     "body",                    null: false
     t.integer  "corner_id"
@@ -70,13 +80,9 @@ ActiveRecord::Schema.define(version: 20150526124037) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",         null: false
     t.string   "email"
-    t.string   "crypted_password", null: false
-    t.string   "salt",             null: false
-    t.datetime "created_at",       null: false
+    t.datetime "created_at",              null: false
+    t.json     "profile",    default: {}
   end
-
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
