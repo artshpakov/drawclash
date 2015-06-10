@@ -5,11 +5,16 @@
       - if post.corner.logo.present?
         = link_to image_tag(corner.logo.thumb('50x50#').url), corner_path(corner), class: 'logo-thumb'
     .body
-      p
+      p.title
         small style="float:right" #{ time_ago_in_words post.created_at } ago
         b = link_to corner.name.upcase, corner_path(corner)
 
       p = post.body
-      p style="float:right; font-size: 12px"
+    - if current_user && post.liked_by?(current_user)
+      a.like href="javascript:;" onclick="DrawClash.dislike({post_id: #{ post.id }})"
+        span.liked => fa_icon :heart
+        = post.likes.count
+    - else
+      a.like href="javascript:;" onclick="DrawClash.like({post_id: #{ post.id }})"
         => fa_icon :'heart-o'
         = post.likes.count

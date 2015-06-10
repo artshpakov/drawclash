@@ -14,10 +14,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
 
-  def liked? entry
-    entry.likes.include? id
-  end
-
   def follows? corner
     follows.include? corner
   end

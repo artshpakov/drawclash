@@ -6,13 +6,13 @@
 $ ->
   window.DrawClash = window.DrawClash || {}
 
-  DrawClash.like = (entry_id) ->
-    $.post '/likes', { entry_id }, (reply) -> window.location.reload()
+  DrawClash.like = (condition) ->
+    $.post '/likes', condition, (reply) -> window.location.reload()
 
-  DrawClash.dislike = (entry_id) ->
+  DrawClash.dislike = (condition) ->
     $.ajax '/likes',
       type: 'DELETE'
-      data: { entry_id },
+      data: condition,
       success: (reply) -> window.location.reload()
 
 

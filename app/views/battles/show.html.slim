@@ -16,12 +16,12 @@ p #{ @battle.entries_count } entries
     .entry-card
       = image_tag entry.image.thumb('280x').url
       .details
-        - if current_user && current_user.liked?(entry)
-          a.like href="javascript:;" onclick="DrawClash.dislike(#{ entry.id })"
+        - if current_user && entry.liked_by?(current_user)
+          a.like href="javascript:;" onclick="DrawClash.dislike({entry_id: #{ entry.id }})"
             span.liked => fa_icon :heart
             | #{ entry.likes.count }
         - else
-          a.like href="javascript:;" onclick="DrawClash.like(#{ entry.id })"
+          a.like href="javascript:;" onclick="DrawClash.like({entry_id: #{ entry.id }})"
             => fa_icon :'heart-o'
             | #{ entry.likes.count }
         = entry.user.username
