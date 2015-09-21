@@ -13,6 +13,5 @@
   = render partial: 'partials/corners', locals: {corners: @corners}
 
 .grid-right-column
-  - if current_user
-    h2 Dashboard
-    = render partial: 'partials/timeline', locals: {timeline: @timeline}
+  h2 Dashboard
+  = render partial: 'partials/timeline', locals: {timeline: @timeline}

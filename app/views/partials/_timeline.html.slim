@@ -10,11 +10,4 @@
         b = link_to corner.name.upcase, corner_path(corner)
 
       p = post.body
-    - if current_user && post.liked_by?(current_user)
-      a.like href="javascript:;" onclick="DrawClash.dislike({post_id: #{ post.id }})"
-        span.liked => fa_icon :heart
-        = post.likes.count
-    - else
-      a.like href="javascript:;" onclick="DrawClash.like({post_id: #{ post.id }})"
-        => fa_icon :'heart-o'
-        = post.likes.count
+      = render partial: 'partials/likes', locals: { entity: post }
