@@ -1,29 +1,25 @@
-h1 = @battle.name
-
-- if @battle.open?
-  p #{ distance_of_time_in_words(@battle.open_until, Time.now) } to go
-- else
-  p Battle concluded #{ distance_of_time_in_words(@battle.open_until, Time.now) } ago
-p = t 'battle.entries_count', count: @battle.entries_count
-
-- if can? :post_entry, @battle
-  = form_for Entry.new, url: corner_battle_entries_path(@battle.corner, @battle) do |form|
-    = form.file_field :image
-    = form.submit "Upload"
-
-#entries.wide data-elaborate-grid="4"
-  - @battle.entries.limit(30).each do |entry|
-    .entry-card
-      = image_tag entry.image.thumb('280x').url
-      .details
-        - if current_user && entry.liked_by?(current_user)
-          a.like href="javascript:;" onclick="DrawClash.dislike({entry_id: #{ entry.id }})"
-            span.liked => fa_icon :heart
-            | #{ entry.likes.count }
+div
+  .grid-left-column  
+    - if can? :post_entry, @battle
+      = form_for Entry.new, url: corner_battle_entries_path(@battle.corner, @battle) do |form|
+        = form.file_field :image
+        = form.submit "Upload"
+  .grid-right-column
+    h1.battle-title = @battle.name
+    ul.horizontal
+      li
+        - if @battle.open?
+          | #{ distance_of_time_in_words(@battle.open_until, Time.now) } to go
         - else
-          a.like href="javascript:;" onclick="DrawClash.like({entry_id: #{ entry.id }})"
-            => fa_icon :'heart-o'
-            | #{ entry.likes.count }
-        = entry.user.name
-      - if can? :delete, entry
-        = link_to '&times;'.html_safe, corner_battle_entry_path(@battle.corner_id, @battle.id, entry.id), class: "remove", title: "Remove entry", onclick:"return confirm('Remove entry?')", method: :delete
+          | Battle concluded #{ distance_of_time_in_words(@battle.open_until, Time.now) } ago
+      li = t 'battle.entries_count', count: @battle.entries_count
+  .clear
+
+- if @battle.entries.any?
+  .wide = react_component('DrawClash.Grid', {entries: @entries.map {|e| reactize e}})
+- else
+  .placeholder No entries yet
+
+
+javascript:
+  entriesPath = '#{ corner_battle_entries_path(@battle.corner, @battle) }';

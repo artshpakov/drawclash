@@ -11,7 +11,7 @@ class EntriesController < ApplicationController
 
   def destroy
     Entry.destroy params[:id] if can? :delete, Entry.find(params[:id])
-    redirect_to :back
+    render nothing: true, status: :no_content
   end
 
 end

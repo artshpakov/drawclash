@@ -2,7 +2,7 @@
   - corner = post.corner
   .post
     .logo
-      - if post.corner.logo.present?
+      - if corner.logo.present?
         = link_to image_tag(corner.logo.thumb('50x50#').url), corner_path(corner), class: 'logo-thumb'
     .body
       p.title
@@ -10,4 +10,4 @@
         b = link_to corner.name.upcase, corner_path(corner)
 
       p = simple_format post.body
-      = render partial: 'partials/likes', locals: { entity: post }
+      = react_component 'DrawClash.Like', liked: post.liked_by?(current_user), likesCount: post.likes.count, url: likes_path(post_id: post.id)
