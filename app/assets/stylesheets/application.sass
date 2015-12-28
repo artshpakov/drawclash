@@ -27,7 +27,7 @@ ul
 
 form
   width: 300px
-  margin: 0 auto 50px
+  margin: 0 auto
 
 header, #wrapper > *
   padding: 16px 50px
@@ -81,6 +81,17 @@ textarea
 
 .note
   color: #808080
+
+.placeholder
+  color: #bbb
+  font-size: 40px
+  margin: 100px auto
+  text-align: center
+
+ul.horizontal
+  li
+    float: left
+    margin-right: 30px
 
 
 .auth-provider-icon
@@ -150,40 +161,3 @@ textarea
     &:hover
       border: 1px solid crimson
       box-shadow: 0 0 6px crimson
-
-
-#entries
-  border-top: 1px solid #bbb
-
-.entry-card
-  width: 100%
-  background-size: cover
-  overflow: hidden
-  position: relative
-  img
-    width: 100%
-    display: block
-    transition: all 0.4s ease
-    &:hover
-      transform: scale(1.1)
-  .details
-    color: #fff
-    padding: 20px
-    background-color: rgba(0,0,0,0.7)
-    position: absolute
-    bottom: 0
-    width: 90%
-
-  .remove
-    position: absolute
-    right: 10px
-    top: 10px
-    z-index: 100
-    font-size: 20px
-    font-weight: bold
-
-.like
-  font-size: 12px
-  float: right
-  .liked
-    color: crimson

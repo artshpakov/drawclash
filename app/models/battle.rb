@@ -8,6 +8,7 @@ class Battle < ActiveRecord::Base
   scope :open, -> { where("open_until > ?", Time.now) }
   scope :ordered, -> { order("(open_until > '#{ Time.now }') DESC").order(created_at: :desc) }
 
+  before_create :set_duration
   after_create :announce
 
 
@@ -21,6 +22,10 @@ class Battle < ActiveRecord::Base
 
 
   protected
+
+  def set_duration
+    self.open_until = 1.week.from_now unless open_until.present?
+  end
 
   def announce
     corner.posts.create body: "New battle #{ name } announced!"

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      login(@user.username, @user.password)
+      login(@user.name, @user.password)
     else
       Rails.logger.debug @user.errors.messages
     end

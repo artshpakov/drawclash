@@ -9,5 +9,5 @@
         small style="float:right" #{ time_ago_in_words post.created_at } ago
         b = link_to corner.name.upcase, corner_path(corner)
 
-      p = post.body
+      p = simple_format post.body
       = render partial: 'partials/likes', locals: { entity: post }

@@ -7,11 +7,10 @@
       = render partial: 'partials/corners', locals: {corners: current_user.corners}
     h2 Corners you follow
     = render partial: 'partials/corners', locals: {corners: @followed_corners}
-  h2
-    ' Browse corners
-    small.note (#{Corner.populated.count} total)
+  - if @corners.any?
+    h2
+      ' Browse more corners
   = render partial: 'partials/corners', locals: {corners: @corners}
 
 .grid-right-column
-  h2 Dashboard
   = render partial: 'partials/timeline', locals: {timeline: @timeline}

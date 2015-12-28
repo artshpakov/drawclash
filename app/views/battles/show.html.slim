@@ -4,7 +4,7 @@ h1 = @battle.name
   p #{ distance_of_time_in_words(@battle.open_until, Time.now) } to go
 - else
   p Battle concluded #{ distance_of_time_in_words(@battle.open_until, Time.now) } ago
-p #{ @battle.entries_count } entries
+p = t 'battle.entries_count', count: @battle.entries_count
 
 - if can? :post_entry, @battle
   = form_for Entry.new, url: corner_battle_entries_path(@battle.corner, @battle) do |form|
@@ -24,6 +24,6 @@ p #{ @battle.entries_count } entries
           a.like href="javascript:;" onclick="DrawClash.like({entry_id: #{ entry.id }})"
             => fa_icon :'heart-o'
             | #{ entry.likes.count }
-        = entry.user.username
+        = entry.user.name
       - if can? :delete, entry
         = link_to '&times;'.html_safe, corner_battle_entry_path(@battle.corner_id, @battle.id, entry.id), class: "remove", title: "Remove entry", onclick:"return confirm('Remove entry?')", method: :delete

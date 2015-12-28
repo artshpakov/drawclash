@@ -1,2 +1,5 @@
 en:
-  hello: "Hello world"
+  battle:
+    entries_count:
+      one: '%{count} entry'
+      other: '%{count} entries'

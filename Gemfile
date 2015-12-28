@@ -8,7 +8,7 @@ gem 'pry-rails'
 gem 'slim-rails'
 gem 'babosa'
 gem 'dragonfly'
-gem 'cancan'
+gem 'cancancan'
 gem 'omniauth-vkontakte'
 
 gem 'font-awesome-rails'

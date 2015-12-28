@@ -18,6 +18,10 @@ class Corner < ActiveRecord::Base
     slug
   end
 
+  def followers # TODO optimize through joins and cache
+    Following.where(entity_type: 'Corner', entity_id: id)
+  end
+
   protected
 
   def generate_slug
