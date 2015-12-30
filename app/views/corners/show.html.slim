@@ -1,7 +1,16 @@
+.area
+  .units-row
+    .unit-20
+      #corner-logo style="background-image: url(#{@corner.logo.url})"
+    .unit-80
+
+
+
+
 #corner-head
   #corner-face
     - if @corner.logo.present?
-      #corner-logo style="background-image: url(#{@corner.logo.url})"
+      
 
     - if current_user
       - if current_user.follows? @corner

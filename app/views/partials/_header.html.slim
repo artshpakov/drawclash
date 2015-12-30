@@ -1,11 +1,10 @@
 header
   #auth
     - if current_user
-      #avatar style="background-image: url(#{ current_user.avatar })"
-      #name
-        | [#{ link_to 'sign out', auth_signout_path, method: :delete }]
+      ul.horizontal
+        li: a href="#" Profile
+        li => link_to 'Sign out', auth_signout_path, method: :delete
+        li = image_tag current_user.avatar, class: 'avatar-tiny'
     - else
       = link_to fa_icon(:vk), '/auth/vkontakte', class: 'auth-provider-icon'
-
-
   h1#logo = link_to 'DRAWCLASH', root_path

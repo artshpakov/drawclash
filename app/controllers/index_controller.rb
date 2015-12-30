@@ -10,7 +10,7 @@ class IndexController < ApplicationController
     else
       Post.limit(POSTS_PER_PAGE)
     end
-    @corners = Corner.populated.limit(30) - (@followed_corners || [])
+    @corners = Corner.populated.limit(12) - (@followed_corners || [])
   end
 
 end

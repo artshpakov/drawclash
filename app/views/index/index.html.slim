@@ -1,16 +1,18 @@
-.grid-left-column
-  - if current_user
-    h2
-      ' Your corners
-      small = link_to 'Create one', new_corner_path
-    - if current_user.corners.present?
-      = render partial: 'partials/corners', locals: {corners: current_user.corners}
-    h2 Corners you follow
-    = render partial: 'partials/corners', locals: {corners: @followed_corners}
-  - if @corners.any?
-    h2
-      ' Browse more corners
-  = render partial: 'partials/corners', locals: {corners: @corners}
+.area
+  row
+    column cols="9"
+      = render partial: 'partials/timeline', locals: {timeline: @timeline}
 
-.grid-right-column
-  = render partial: 'partials/timeline', locals: {timeline: @timeline}
+    column cols="3"
+      - if current_user
+        h2
+          ' Your corners
+          small = link_to 'Create one', new_corner_path
+        - if current_user.corners.present?
+          = render partial: 'partials/corners', locals: {corners: current_user.corners}
+        h2 Corners you follow
+        = render partial: 'partials/corners', locals: {corners: @followed_corners}
+      - if @corners.any?
+        h2
+          ' Browse corners
+        = render partial: 'partials/corners', locals: {corners: @corners}

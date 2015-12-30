@@ -1,163 +1,139 @@
 /*
- *= require_tree .
+ *= require kube
  *= require_self
+ *= require_tree .
  */
 
 @import font-awesome
-
-
-body
-  font-family: Lucida Grande
-  padding: 0
-  margin: 0
+@import scheme
+@import mixins
 
 
 h1, h2, h3, h4
   font-weight: normal
+  margin-top: 0
 
 a
-  color: crimson
+  color: $main-color
   text-decoration: none
   &:hover
-    color: rgb(158, 28, 53)
+    color: $main-hover
 
 ul
   list-style: none
-  padding: 0
+  margin: 0
+  &.horizontal
+    li
+      float: left
+      margin-right: 20px
 
-form
-  width: 300px
-  margin: 0 auto
 
-header, #wrapper > *
-  padding: 16px 50px
+
+header
+  padding: 12px 30px
+
+.area
+  padding: 30px
   &.wide
     padding: 0
 
+.avatar-medium
+  +avatar(60px)
+
+.avatar-tiny
+  +avatar(40px)
 
 
-.grid-left-column
-  float: right
-  width: 300px
-.grid-right-column
-  margin-right: 330px
+// form
+//   width: 300px
+//   margin: 0 auto
+//   input, textarea
+//     width: 280px
+//     &[type=submit]
+//       width: auto
 
-#logo
-  font-size: 50px
-  margin: 0
-
-#signup-form, #signin-form
-  padding: 8px 12px
-  float: left
-
-form
-  input, textarea
-    width: 280px
-    &[type=submit]
-      width: auto
-
-input, textarea
-  display: block
-  padding: 6px 10px
-  margin-bottom: 3px
-  outline: none
-  border: 2px solid #ccc
-  border-radius: 3px
-  border-style: groove
-  width: 100%
-  &:focus
-    border: 2px solid crimson
-  &[type=submit]
-    cursor: pointer
-    margin: auto
-    width: auto
-    &:hover
-      background-color: #bbb
-textarea
-  width: 300px
-
-.clear
-  clear: both
-
-.note
-  color: #808080
-
-.placeholder
-  color: #bbb
-  font-size: 40px
-  margin: 100px auto
-  text-align: center
-
-ul.horizontal
-  li
-    float: left
-    margin-right: 30px
+// input, textarea
+//   display: block
+//   padding: 6px 10px
+//   margin-bottom: 3px
+//   outline: none
+//   border: 2px solid #ccc
+//   border-radius: 3px
+//   border-style: groove
+//   width: 100%
+//   &:focus
+//     border: 2px solid crimson
+//   &[type=submit]
+//     cursor: pointer
+//     margin: auto
+//     width: auto
+//     &:hover
+//       background-color: #bbb
+// textarea
+//   width: 300px
 
 
-.auth-provider-icon
-  display: block
-  font-size: 25px
-  border: 1px solid
-  border-radius: 30px
-  width: 30px
-  height: 30px
-  padding: 10px
-  line-height: 30px
-  text-align: center
-  &:hover
-    background-color: crimson
-    color: #fff
-    border-color: crimson
 
 
-.corner
-  overflow: hidden
-  margin-bottom: 14px
-  .logo-thumb
-    border-radius: 30px
-    overflow: hidden
-    border: 1px solid #666
-    float: left
-    margin-right: 14px
-    height: 60px
-    width: 60px
 
-#corner-head
-  overflow: hidden
-  #corner-face
-    text-align: center
-    float: left
-    #corner-logo
-      width: 200px
-      height: 300px
-      background-size: cover
-      background-position: center
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3) inset
-      border: 1px solid #666
-    .follow
-      font-size: 20px
-      line-height: 40px
+// .note
+//   color: #808080
 
-  #corner-basic
-    margin-left: 240px
+// .placeholder
+//   color: #bbb
+//   font-size: 40px
+//   margin: 100px auto
+//   text-align: center
 
-#corner-body
-  .battle
-    background-size: cover
-    background-position: top center
-    background-color: #bbb
-    height: 170px
-    width: 260px
-    padding: 10px 20px
-    margin: 0 20px 12px 0
-    display: block
-    border: 1px solid #bbb
-    border-radius: 6px
-    box-shadow: 0 2px 2px #bbb
-    color: #fff
-    text-shadow: 0 2px 4px #000
-    transition: all 0.3s ease
-    float: left
-    &:hover
-      border: 1px solid crimson
-      box-shadow: 0 0 6px crimson
+
+// .corner
+//   overflow: hidden
+//   margin-bottom: 14px
+//   .logo-thumb
+//     border-radius: 30px
+//     overflow: hidden
+//     border: 1px solid #666
+//     float: left
+//     margin-right: 14px
+//     height: 60px
+//     width: 60px
+
+// #corner-head
+//   overflow: hidden
+//   #corner-face
+//     text-align: center
+//     float: left
+//     #corner-logo
+//       width: 200px
+//       height: 300px
+//       background-size: cover
+//       background-position: center
+//       box-shadow: 0 6px 12px rgba(0,0,0,0.3) inset
+//       border: 1px solid #666
+//     .follow
+//       font-size: 20px
+//       line-height: 40px
+
+//   #corner-basic
+//     margin-left: 240px
+
+// #corner-body
+//   .battle
+//     background-size: cover
+//     background-position: top center
+//     background-color: #bbb
+//     height: 170px
+//     width: 260px
+//     padding: 10px 20px
+//     margin: 0 20px 12px 0
+//     display: block
+//     border: 1px solid #bbb
+//     border-radius: 6px
+//     box-shadow: 0 2px 2px #bbb
+//     color: #fff
+//     text-shadow: 0 2px 4px #000
+//     transition: all 0.3s ease
+//     float: left
+//     &:hover
+//       border: 1px solid crimson
+//       box-shadow: 0 0 6px crimson

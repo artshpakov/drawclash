@@ -1,13 +1,14 @@
 - timeline.each do |post|
   - corner = post.corner
-  .post
-    .logo
+  row.post
+    column.logo
       - if corner.logo.present?
-        = link_to image_tag(corner.logo.thumb('50x50#').url), corner_path(corner), class: 'logo-thumb'
-    .body
-      p.title
-        small style="float:right" #{ time_ago_in_words post.created_at } ago
-        b = link_to corner.name.upcase, corner_path(corner)
+        = link_to image_tag(corner.logo.thumb('60x60#').url, class: 'avatar-medium'), corner_path(corner)
+    column cols="12"
+      h4
+        = link_to corner.name.upcase, corner_path(corner)
 
       p = simple_format post.body
-      = react_component 'DrawClash.Like', liked: post.liked_by?(current_user), likesCount: post.likes.count, url: likes_path(post_id: post.id)
+      ul.horizontal.footer
+        li = react_component 'DrawClash.Like', liked: post.liked_by?(current_user), likesCount: post.likes.count, url: likes_path(post_id: post.id)
+        li #{ time_ago_in_words post.created_at } ago

@@ -7,7 +7,6 @@ html
 
   body lang="ru"
     = render partial: 'partials/header'
-    #wrapper
-      == yield
+    == yield
 
     = javascript_include_tag :application
