@@ -1,0 +1,27 @@
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/drawclash
+  ports:
+    - "3000:80"
+  links:
+    - db
+
+db:
+  image: postgres
+  ports:
+    - "5432:5432"
+  volumes:
+    - /srv/docker/postgresql:/var/lib/postgresql
+
+nginx:
+  build: ./config/docker/
+  dockerfile: Dockerfile-nginx
+  restart: always
+  ports:
+    - "80:80"
+  volumes:
+    - /static:/drawclash/public
+  links:
+    - web:web

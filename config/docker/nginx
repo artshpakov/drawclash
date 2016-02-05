@@ -1,0 +1,30 @@
+upstream web {
+  server web:3000;
+  keepalive 16;
+}
+
+server {
+  listen 80 default_server;
+  server_name 127.0.0.1;
+  root /static;
+
+  send_timeout 300;
+  proxy_read_timeout 300;
+  client_max_body_size 5m;
+
+  access_log /drawclash/log/nginx.access.log;
+  error_log  /drawclash/log/nginx.error.log;
+
+  proxy_set_header X-Real-IP  $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header Host $http_host;
+  proxy_redirect   off;
+
+  location / {
+    try_files $uri @proxy;
+  }
+
+  location @proxy {
+    proxy_pass http://web;
+  }
+}
