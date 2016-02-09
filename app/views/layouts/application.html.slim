@@ -7,7 +7,10 @@ html
 
   body lang="ru"
     = render partial: 'partials/header'
+
+    #calc
+
     #wrapper
       == yield
 
-    = javascript_include_tag :application
+    script src="/js/main.js"

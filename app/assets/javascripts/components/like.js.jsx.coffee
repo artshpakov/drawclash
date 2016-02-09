@@ -1,4 +1,7 @@
-DrawClash.Like = React.createClass
+react = require 'react'
+
+
+module.exports = React.createClass
 
   getInitialState: ->
     liked: @props.liked
@@ -16,10 +19,10 @@ DrawClash.Like = React.createClass
     if @state.liked then @dislike() else @like()
 
   render: ->
-    `<a className="like" href="javascript:;" onClick={ this.handleHeart }>
+    '<a className="like" href="javascript:;" onClick={ this.handleHeart }>
       <span className="liked">
-        <i className={ this.state.liked ? 'fa fa-heart' : 'fa fa-heart-o' }></i>
+        <i className={ this.state.liked ? "fa fa-heart" : "fa fa-heart-o" }></i>
         &nbsp;
         { this.state.likesCount }
       </span>
-    </a>`
+    </a>'

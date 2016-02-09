@@ -4,8 +4,10 @@ tmp
 .capistrano
 public/assets
 public/system
+public/js
 .bundle
 REVISION
 assets_manifest.json
 config/database.yml
+node_modules/
 *.swp

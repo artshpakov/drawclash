@@ -1,0 +1,33 @@
+{
+  "name": "drawclash",
+  "version": "1.0.0",
+  "description": "== README",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artshpakov/drawclash.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artshpakov/drawclash/issues"
+  },
+  "homepage": "https://github.com/artshpakov/drawclash#readme",
+  "dependencies": {
+    "react": "^0.14.7",
+    "redux": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.10.0",
+    "sass-loader": "^3.1.2",
+    "webpack": "^1.12.13"
+  }
+}
