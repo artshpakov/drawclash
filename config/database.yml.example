@@ -1,7 +1,14 @@
-development: &default
+default: &default
   adapter: postgresql
   encoding: unicode
   database: drawclash
   pool: 5
+
+development:
+  <<: *default
   username: postgres
   host: db
+
+test:
+  <<: *default
+  database: drawclash_test

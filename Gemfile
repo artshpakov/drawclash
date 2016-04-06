@@ -21,8 +21,11 @@ gem 'quiet_assets'
 
 gem 'analytics-ruby', '~> 2.0.0', require: 'segment/analytics'
 
-group :development do
+group :development, :test do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails'
+  gem 'factory_girl'
+  gem 'database_cleaner'
 end
